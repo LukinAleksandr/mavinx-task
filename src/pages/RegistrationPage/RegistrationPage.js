@@ -84,7 +84,35 @@ const RegistrationPage = () => {
     setValidForm(valid)
   }, [name, surname, nameCustomer, email, phone, role, pass, passConfirm])
 
+  useEffect(() => {
+    if (role.value === '1') {
+      setNameCustomer((prev) => ({
+        ...prev,
+        validation: {
+          empty: true,
+        },
+      }))
+    } else {
+      setNameCustomer((prev) => ({
+        ...prev,
+        validation: {
+          required: true,
+        },
+      }))
+    }
+  }, [role])
+
   const registerHandler = async () => {
+    // const formData = new FormData()
+    // formData.append('name', name.value)
+    // formData.append('surname', surname.value)
+    // formData.append('name_customer', nameCustomer.value)
+    // formData.append('email', email.value)
+    // formData.append('phone', phone.value)
+    // formData.append('role', role.value)
+    // formData.append('password', pass.value)
+    // formData.append('password_confirmation', passConfirm.value)
+
     const data = await request(
       'https://prozorro.mavinx.com/api/test/register',
       'POST',
@@ -133,7 +161,7 @@ const RegistrationPage = () => {
           value={nameCustomer.value}
           name="сustomer"
           label="Сustomer"
-          errorMsg="Введите название заказчика!"
+          errorMsg="Неверное имя заказчика!"
           touched={!!nameCustomer.value}
           type="text"
           valid={nameCustomer.isValid}
@@ -182,7 +210,7 @@ const RegistrationPage = () => {
         <Input
           value={passConfirm.value}
           name="pass"
-          label="Pass"
+          label="Pass Confirm"
           type="password"
           errorMsg="Повторите пароль!"
           touched={!!passConfirm.value}

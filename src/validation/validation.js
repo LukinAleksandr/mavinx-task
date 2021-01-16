@@ -9,6 +9,9 @@ export const validateInput = (input, prop) => {
   if (prop.hasOwnProperty('required')) {
     isValid = input.trim() !== '' && isValid
   }
+  if (prop.hasOwnProperty('empty')) {
+    isValid = is.empty(input) && isValid
+  }
   if (prop.hasOwnProperty('email')) {
     isValid = is.email(input) && isValid
   }

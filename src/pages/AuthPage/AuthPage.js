@@ -106,7 +106,7 @@ const AuthPage = () => {
             disabled={!validForm || loading}
             onClick={() => authHandler()}
           >
-            Регистрация
+            Авторизация
           </button>
         </div>
       </div>

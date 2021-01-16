@@ -19,7 +19,6 @@ export const useHttp = () => {
         })
         const data = await response.json()
 
-        console.log('q', data)
         setMsg(data.message)
         setLoading(false)
         return data
